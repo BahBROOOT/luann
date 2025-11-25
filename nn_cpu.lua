@@ -1,6 +1,6 @@
 ------------------------------------------------------------
 -- Init
--- See doc/nn-usage.md for instructions.
+-- See docs/nn-usage.md for instructions.
 -- Example: luajit nn_cpu.lua demo
 -- Example: lua54 nn_cpu.lua demo
 ------------------------------------------------------------

@@ -1,6 +1,6 @@
 ------------------------------------------------------------
 -- Init
--- See doc/csv-usage.md for instructions.
+-- See docs/csv-usage.md for instructions.
 ------------------------------------------------------------
 
 local CSV = {}
