@@ -1,1 +1,1 @@
-## NO GPU ACCELERATION IMPLEMENTED YET!
+## See docs/nn-usage.md for instructions
