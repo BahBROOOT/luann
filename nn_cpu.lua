@@ -19,8 +19,8 @@ local case = {
     ["Lua 5.0"] = ("nn: Old Lua version detected (%s) expect problems. Recommended (Lua 5.3+ or LuaJIT)"):format(version),
     ["Lua 5.1"] = ("nn: Old Lua version detected (%s) expect problems. Recommended (Lua 5.3+ or LuaJIT)"):format(version),
     ["Lua 5.2"] = ("nn: Old Lua version detected (%s) expect problems. Recommended (Lua 5.3+ or LuaJIT)"):format(version),
-    ["Lua 5.3"] = ("nn: Current Lua version (%s). This version will work fine for this script but is slower than the recommended LuaJIT version, wich will run faster!"):format(version),
-    ["Lua 5.4"] = ("nn: Current Lua version (%s). This version will work fine for this script but is slower than the recommended LuaJIT version, wich will run faster!"):format(version),
+    ["Lua 5.3"] = ("nn: Current Lua version (%s). Not using LuaJIT results in slower performance and not useability of gpu compute!"):format(version),
+    ["Lua 5.4"] = ("nn: Current Lua version (%s). Not using LuaJIT results in slower performance and not useability of gpu compute!"):format(version),
     ["LuaJIT"] = ("nn: Current Lua version (%s)."):format(version),
 }
 print(case[version])

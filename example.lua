@@ -2,7 +2,7 @@
 -- Init
 ------------------------------------------------------------
 
-local NN = require('nn_cpu')
+local NN = require('nn')
 local M = NN.M
 local RNG = NN.RNG
 

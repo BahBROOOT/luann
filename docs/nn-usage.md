@@ -20,15 +20,81 @@ This file focuses on *functions and methods only*.
 
 ---
 
+## Compute device selection
+
+Use the unified module for both CPU and GPU compute:
+
+```lua
+local NN = require("nn")
+```
+
+CPU is the default. Pass `device` options to high-level network calls when you
+want to choose explicitly:
+
+```lua
+net:fit(X, y, { device = "cpu" })
+net:fit(X, y, { device = "gpu" })
+local logits = net:forward(X, { device = "gpu" })
+local probs = net:predict_proba(X, { device = "gpu" })
+local classes = net:predict_classes(X, { device = "gpu" })
+```
+
+You can also set a default device when creating a network:
+
+```lua
+local net = NN.new({ device = "auto" })
+```
+
+Per-call `device` options override the network default.
+
+Supported device values are:
+
+- `"cpu"` – always use the pure-Lua backend.
+- `"gpu"` – request OpenCL GPU execution.
+- `"auto"` – use GPU when available, otherwise CPU.
+
+If GPU support is unavailable, the module warns once and falls back to CPU.
+Set `gpu_required = true` to raise an error instead:
+
+```lua
+net:fit(X, y, { device = "gpu", gpu_required = true })
+```
+
+GPU status helpers:
+
+- `NN.gpu_available()`
+- `NN.gpu_info()`
+- `NN.available_devices()`
+
+LuaJIT can use the embedded OpenCL backend directly through FFI. Plain Lua
+5.4 can load the vendored native bridge and probe OpenCL, but it cannot execute
+GPU tensor kernels yet because the bridge tensor entrypoints are not implemented.
+On plain Lua 5.4, `device = "gpu"` therefore falls back to CPU unless
+`gpu_required = true` is set. Use LuaJIT when you need GPU compute today.
+
+The lower-level `nn_cpu` and `nn_gpu_backend` modules remain available for
+compatibility, but new code should prefer `require("nn")`.
+
+---
+
 ## 1. Core module API (`NN`)
 
-### `NN.new()`
+### `NN.new(opts)`
 
 Create a new, empty sequential network.
 
 ```lua
 local net = NN.new()
+local gpu_preferring_net = NN.new({ device = "auto" })
 ```
+
+**Arguments**
+
+- `opts` (table, optional):
+  - `device` (`"cpu"`, `"gpu"`, or `"auto"`, optional) – default compute
+    device for high-level network calls. Defaults to `"cpu"`.
+  - `gpu_required` (boolean, optional) – if true, GPU requests error instead
+    of falling back to CPU.
 
 **Returns**
 
