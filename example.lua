@@ -5,7 +5,6 @@
 local NN = require('nn_cpu')
 local M = NN.M
 local RNG = NN.RNG
-local csv = require('csv')
 
 ------------------------------------------------------------
 -- Make data
