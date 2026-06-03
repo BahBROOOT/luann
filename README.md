@@ -16,6 +16,14 @@ net:fit(X, y, { epochs = 50, batch = 16 }) -- CPU by default
 local probs = net:predict_proba(X)
 ```
 
+For a CPU-only single-file setup, you can still import the standalone module:
+
+```lua
+local NN = require("nn_cpu")
+```
+
+That path does not load GPU routing, native bridge checks, or GPU warnings.
+
 Switch compute device per call with `device = "cpu"`, `"gpu"`, or `"auto"`:
 
 ```lua

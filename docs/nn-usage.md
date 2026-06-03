@@ -28,6 +28,15 @@ Use the unified module for both CPU and GPU compute:
 local NN = require("nn")
 ```
 
+For a CPU-only single-file setup, you can still import the standalone CPU
+module:
+
+```lua
+local NN = require("nn_cpu")
+```
+
+That path does not load GPU routing, native bridge checks, or GPU warnings.
+
 CPU is the default. Pass `device` options to high-level network calls when you
 want to choose explicitly:
 
